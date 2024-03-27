@@ -4,7 +4,7 @@
 
 ## 3월 27일 강의 내용 정리
 * JSX란? Javascript에 XML을 주가한 확장 문법.
-* JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환을 해 주고, React가 createElement함수를 사용하여 자동으로 자바스크립트로 변환을 해준다 혹시 만일 JS작업을 할 경우 createElement 함수를 선언해야 한다
+* JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환을 해 주고, React가 createElement함수를 사용하여 자동으로 자바스크립트로 변환을 해준다 혹시 만일 JS작업을 할 경우 createElement 함수를 선언해야 한다.
 
 ## 3월 20일 수업 내용 정리
 * 리엑트의 장점으로는 빠른 업데이트와 렌더링 속도인데, 이것을 가능하게 하는 것이 Virtual DOM이다.
