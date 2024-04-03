@@ -49,6 +49,12 @@ ReatDOM.render(
     document.getElementById('root')
 );
 ```
+State란?  
+* 리엑트 컴포넌트 상태 의미
+* 상태의 의미는 정상인 지 비정상인 지가 아니라 컴포넌트 데이터를 의미
+
+state를 변경하고자 할 때에는 setState()함수를 사용
+
 ## 3월 27일 강의 내용 정리
 * JSX란? Javascript에 XML을 주가한 확장 문법.
 * JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환을 해 주고, React가 createElement함수를 사용하여 자동으로 자바스크립트로 변환을 해준다.
