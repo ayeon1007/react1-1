@@ -2,6 +2,53 @@
 
 # 202230234 조아연
 
+## 4월 3일 강의 내용 정리
+* 컴포넌트 구조라는 것은 작은 컴포넌트가 모여 큰 컴포넌트를 구성하고, 다시 이런 컴포넌트들이 모여서 전체 페이지를 구성하다는 것을 의미
+* 컴포넌트는 자바스크립트 함수처럼 입력과 출력이 있다는 면에서는 유사
+* 다만 입력은 Props가 담당, 출력은 리엑트 엘리먼트의 형태로 출력.    Props? proprty의 준말.
+컴포넌트에 어떤 속성, props를 넣느냐에 따라 속성이 다른 엘리멘트가 출력.
+* Props의 특징은 읽기 전용이고, 변경할 수 없다.
+
+* Pure 함수는 인수로 받은 정보가 함수 내부에서도 변하지 않는 함수
+```js
+// input를 변경하지 않으며 같은 input에 대해서 항상 같은 output을 리턴
+funtion sum(a,b) {
+    return a + b;
+}
+```
+* impure 함수는 인수로 받은 정보가 함수 내부에서 변하는 함수
+```js
+// input를 변경함
+funtion withdraw(account, amount) {
+    account.total -=amount;
+}
+```
+
+* JSX를 사용하지 않는 경우 props의 전달 방법은 createElement()함수를 사용
+
+* createElememt()함수의 두 번째 매개변수가 props이다
+* JSX를 사용하지 않으면 이와 같이 코드를 작성
+```js
+    React.createElement(
+        Profile,{
+            name : "소플",
+            introdution "안녕하세요, 소플입니다.",
+            viewCount : 1500;
+        },
+        null
+    );
+```
+컴포넌트의 렌더링
+```js
+funtion Welcome(props){
+    return<h1>안녕,(props.name)</h1>
+}
+const element = <Welcome name="인제 /">;
+ReatDOM.render(
+    element,
+    document.getElementById('root')
+);
+```
 ## 3월 27일 강의 내용 정리
 * JSX란? Javascript에 XML을 주가한 확장 문법.
 * JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환을 해 주고, React가 createElement함수를 사용하여 자동으로 자바스크립트로 변환을 해준다.
