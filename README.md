@@ -2,6 +2,54 @@
 
 # 202230234 조아연
 
+
+## 4월 17일 강의 내용 정리
+훅이란 무엇인가?
+* 클래스형 컴포넌트에서는 생성자(constructor)에서 state를 정의하고, setState() 함수를 통해 state를 업데이트!
+* 함수형 컴포넌트에서도 state나 생명주기 함수의 기능을 사용하게 해주기 위해 추가된 기능이 바로 훅(Hook)이다
+* 훅의 이름은 모두 use로 시작
+* 함수형 컴포넌트도 훅을 사용하여 클래스형 컴포넌트의 기능을 모드 동일하게 구현할 수 있게 됨
+
+useState
+* useState는 함수형 컴포넌트에서 state를 사용하기 위한 hook
+```js
+import React, {useState} from "react";
+
+export default function Counter(props) {
+    const [count, setCount] =useState(0)
+    return (
+        <>
+        <p>총 {count}번 클릭하였습니다.</p>
+        <button onClick={() => setCount(count+1)}>클릭</button>
+        </>
+    )
+}
+```
+
+useEffect
+* useState와 함께 많이 사용되는 Hook
+* 사이드 이펙트를 수행하기 위한 것
+* 클래스 컴포넌트의 생명주기 함수와 가능 기능을 하나로 통합한 기능 제공
+```js
+useEffect(이펙트 함수, 의존성 배열)
+```
+* 의존성 배열은 이펙트가 의존하고 있는 배열로, 배열 안에 있는 변수 중에 하나라도 값이 변경 되었을 때 이펙트 함수가 실행됨
+* 이펙트 함수는 처음 컴포넌트가 렌더링 된 이후, 그리고 재렌더링 이후에 실행
+
+useMemo
+* useMemo() 혹은 Memoizde value를 리턴하는 Hook
+* 이전 계산값을 갖고 있기 때문에 연산량의 많은 작업의 반복을 피할 수 있다
+* 이 훅은 렌더링이 일어나는 동안에 실행된다
+```js
+const memoizeValue = useMemo(
+    ()=>{
+        //연산량이 높은 작업을 수행하여 결과를 반환
+        return computeExpensiveValue(의존성 변수1, 의존성 변수2);
+    },
+    [의존성 변수1, 의존성 변수2]
+);
+```
+
 ## 4월 3일 강의 내용 정리
 * 컴포넌트 구조라는 것은 작은 컴포넌트가 모여 큰 컴포넌트를 구성하고, 다시 이런 컴포넌트들이 모여서 전체 페이지를 구성하다는 것을 의미
 * 컴포넌트는 자바스크립트 함수처럼 입력과 출력이 있다는 면에서는 유사
