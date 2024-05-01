@@ -2,7 +2,46 @@
 
 # 202230234 조아연
 
+## 5월 1일 강의 내용 정리
+훅의 두 가지 규칙
+* 첫 번째 규칙은 무조건 최상의 레벨에서만 호출되어야 한다는 것. 반복문이나 조건문 또는 중첩된 함수들 안에서 훅을 호출하면 안 됨. 이 규칙에 따라서 훅은 컴포넌트가 렌더링 될 때마다 같은 순서로 호출되어야 한다.
+* 두 번째 규칙은 함수형 컴포넌트에서만 훅을 호출해야 한다는 점. 따라서 일반 자바스크립트 함수에서 훅을 호출하면 안 된다. 훅은 함수형 컴포넌트 훅은 직접 만든 커스텀 컴포넌트 안에서만 호출할 수 있다.
+* 필요하다면 직접 훅을 만들어 쓸 수도 있다. 이것을 커스텀 훅이라 부른다
 
+```js
+* userstatus 코드 예시
+import { useState, useEffect } from "react";
+
+export default function UserStatus (props) {
+    const isOnline, useUserStatus(props.user.id)
+    if(isOnline===null) {
+        return'대기 중...'
+    }
+    return isOnline ? '온라인' : '오프라인'
+}
+```
+* 한 가지 주의할 점은 일반 컴포넌트와 마찬가지로 다른 훅을 호출하는 것은 무조건 커스텀 훅의 최상의 레벨에서만 해야함.
+* 이름은 use로 시작해야함. 그렇지 않으면 다른 훅을 불러올 수 없음
+
+이벤트 핸들링
+```js
+DOM에서 클릭 이벤트를 처리하는 예제 코드
+<button onclick="activate()">
+    Activite
+</button>
+```
+
+```js
+React에서 클릭 이벤트 처리하는 예제코드
+<button onClick="(activate)">
+    Activite
+</button>
+```
+* 이 둘의 차이점은 이벤트 이름이 onclick에서 onClick으로 변경, 전달 하려는 함수는 문자열에서 함수 그대로 전달
+* 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수를 이벤트 핸들러라 한다
+
+이벤트 핸들러 추가하는 방법은?
+* 버튼을 클릭하면 이벤트 핸들러 함수인 handleClick()함수를 호출하도록 되어있다.
 ## 4월 17일 강의 내용 정리
 훅이란 무엇인가?
 * 클래스형 컴포넌트에서는 생성자(constructor)에서 state를 정의하고, setState() 함수를 통해 state를 업데이트!
