@@ -2,6 +2,38 @@
 
 # 202230234 조아연
 
+
+## 5월 29일 강의 내용 정리
+html에서는 textarea의 children으로 텍스트가 들어가는 형태
+```js
+<textarea>
+ 안녕하세요 여기에 이렇게 텍스트가 들어갑니다
+</textarea>
+```
+* 리엑트에서는 state를 통해 태그의 value라는 attribute를 변경하여 텍스트를 표시
+
+select 태그도 textarea와 동일
+```js
+<select>
+    <option value="apple">사과</option>
+    <option value="banana">바나나</option>
+    <option value="grape">포도</option>
+    <option value="watermelon">수박</option>
+```
+file input 태그는 그 값이 읽기 전용이기 때문에 리엑트에선 비제어 컴포넌트가 된다
+```js
+<input type="file" />
+```
+제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력값을 바꿀 수 없다   
+만약 value prop은 넣되, 자유롭게 입력할 수 있게 만들고 싶다면 undefined이나 null을 넣기
+```js
+ReactDOM.render(<input value="hi" />, rootNode);
+
+setTimeOut(function() {
+    ReactDOM.render(<input value={null} />, rootNode);
+}, 1000);
+```
+
 ## 5월 22일 강의 내용 정리
 리스트 키란 무엇인가?
 * 리스트는 자바스크립트의 변수나 객체를 하나의 변수로 묶여놓은 배열과 같은 것
