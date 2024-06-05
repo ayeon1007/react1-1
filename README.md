@@ -2,9 +2,61 @@
 
 # 202230234 조아연
 
+## 6월 5일 강의 내용 정리
+shared stare
+* shared stare는 state의 공유를 의미  
+* 같은 부모 컴포넌트의 state를 자식 컴포넌트가 공유해서 사용하는 것 
+
+shared stare 적용하기
+* 다음은 하위 컴포넌트의 state를 부모 컴포넌트로 올려서 shared stare를 적용
+* 이것을 lifting State Up(State 끌어 올리기)라고 한다
+
+```js
+ <input value={props.temperature} onChange={handleChange} />
+```
+
+상위 컴포넌트인 Calculatord에서 온도와 단위를 state로 갖고, 두 개의 하위 컴포넌트는 각각 섭씨와 화씨로 변환
+
+합성?  
+* 합성은 여러 개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것  
+* 조합 방법에 따라 합성의 사용 기법을 나눌 수 있다
+
+Containment(담다, 포함하다, 격리하다)
+* 특정 컴포넌트가 하위 컴포넌트를 포함하는 형태의 합성 방법
+* 컴포넌트에 따라서는 어떤 자식 엘리먼트가 들어올 지 미리 예상할 수 없는 경우가 있음
+* 밤용적인 '박스' 역할을 하는 Sidebar 혹은 Dialog와 같은 컴포넌트에서 자주 볼 수 있음
+* 이런 컴포넌트에선 child prop을 사용하여 자식 엘리먼트를 출력에 그대로 전달하는 것이 좋다
+* 이때 child prop은 컴포넌트의 props에 기본적으로 들어있는 children속성을 사용
+
+```js
+import FancyBorder from "./FancyBorder"
+
+export default function WelcomeDialog() {
+    return(
+        <FancyBorder color="blue">
+            <h1 className="Dialog-title">어서오세요</h1>
+            <p className="Dialog-message">우리 사이트 방문을 환영합니다</p>
+        </FancyBorder>
+    )
+}
+```
+
+```js
+export default function FancyBorder(props) {
+    return(
+        <div className={'FancyBorder FancyBorder-' + props.color}>
+            {props.children}
+        </div>
+    )
+}
+```
+
+리엑트에서는 props, children을 통해 하위 컴포넌트를 하나로 모아서 제공해줌
 
 ## 5월 29일 강의 내용 정리
+
 html에서는 textarea의 children으로 텍스트가 들어가는 형태
+
 ```js
 <textarea>
  안녕하세요 여기에 이렇게 텍스트가 들어갑니다
