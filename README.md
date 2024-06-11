@@ -2,6 +2,93 @@
 
 # 202230234 조아연
 
+## 6월 11일 강의 내용 정리(보강주)
+
+Specialization(특수화, 전문화)
+* 웰컴다이얼로그는 다이얼로그의 특별한 케이스
+* 범용적인 개념을 구별이 되게 구체화하는 것을 특수화라고 함
+* 객체 지향 언어에서는 상속을 사용하여 특수화를 구현함
+* 리액트에선 합성을 사용하여 특수화를 구현
+```js
+다음 예와 같이 특수화는 범용적으로 쓸 수 있는 컴포넌트를 만들어 놓고 이를 특수한 목적으로 사용하는 합성 방식
+function Dialog(props){
+    return(
+        <FancyBorder color="blue">
+            <h1 className="Dialog-title">
+                {props.title}
+            </h1>
+            <p className="Dialog-message">
+                {props.message}
+            </p>
+            </FancyBorder>
+    );
+}
+
+function WelcomeDialog(props){
+    return(
+        <Dialog
+            title="어서 오세요"
+            message="우리 사이트에 방문하신 것을 환영합니다!"/>
+    );
+}
+```
+
+Containment와 Spacialization 같이 사용
+* Containment를 위해서 props.children을 사용하고, Spacialization을 위해 직접 정의한 props를 사용하면 됨
+
+상속에 대해
+* 합성과 대비되는 개념으로 상속(inheritance)이 있다
+* 자식 클래스는 부모 클래시가 가진 변수나 함수들의 속성을 모두 갖게 되는 개념
+* 하지만 리액트애선 상속보다는 합성을 통해 새로운 컴포넌트를 생성
+
+컨텍스트란?
+* 기존의 일반적인 리액트에선 데이터가 컴포넌트의 props를 통해 부모에서 자식으로 단방향으로 전달 되었었다
+* 컨텍스트는 리액트 컴포넌트들 사이에서 데이터를 기존의 props를 통해 전달하는 방식 대신 '컴포넌트 트리를 통해 곧바로 컴포넌트에 전달하는 새로운 방식'을 제공
+
+컨텍스트를 사용하기 전 고려할 점
+* 컨텍스트는 다른 레벨의 많은 컴포넌트가 특정 데이터를 필요로 하는 경우에 주로 사용
+* 하지만 무조건 컨텍스트를 사용하는 것이 좋은 건 아님, 왜냐하면 컴포넌트와 컨텍스트가 연동되면 재사용성이 떨어짐
+* 따라서 다른 레벨의 많은 컴포넌트가 데이터를 필요로 하는 경우가 아니면 props를 통해 데이터를 전달하는 컴포넌트 합성 방법이 더 적합
+
+컨텍스트 API
+```js
+Context.Provider
+<MyContext.Provider value = {/*some value */}>
+Provider 컴포넌트에는 value라는 prop이 있고, 이것은 Provider 컴포넌트 하위에 있는 컴포넌트에게 전달
+하위 컴포넌트를 consumer 컴포넌트라고 부름
+```
+
+Context.Consumer
+* 함수형 컴포넌트에서 Context.Consumer을 사용하여 컨텍스트를 구독할 수 있다
+```js
+<MyContext.Consumer>
+    {value => /*컨텍스트의 값에 따라 컴포넌트들을 렌더링*/>}
+</MyContext.Consumer>
+```
+* 컴포넌트의 자식으로 함수가 올 수 있다
+
+Context.displayName
+* 컨텍스트 객체는 displayName이라는 문자열 속성을 갖는다
+```js
+const MyContext = React.createContext(/*some value*/);
+MyContext.displayName = 'myDisplayName';
+
+//개발자 도구에 "myDisplayName.Provider"로 표시됨
+<MyContext.provider>
+
+//개발자 도구에 "myDisplayName.Consumer"로 표시됨
+<MyContext.Consumer>
+```
+
+여러개의 컨텍스트 사용하기
+* 여러 개의 컨텍스트를 동시에 사용하려면 Context.Provider를 중첩하여 사용
+
+useContext
+* 함수형 컴포넌트에서 컨텍스트를 사용하기 위해 컴포넌트를 매번 Cosumer 컴포넌트를 감싸주는 것보다 좋은 방법. 바로 Hook을 사용
+* useContext()혹은 React.createContext() 함수 호출로 생성된 컨텍스트 객체를 인자로 받아서 현재 컨텍스트의 값을 리턴
+```js
+useContext(MyContext)
+```
 ## 6월 5일 강의 내용 정리
 shared stare
 * shared stare는 state의 공유를 의미  
