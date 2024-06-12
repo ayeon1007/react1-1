@@ -2,8 +2,102 @@
 
 # 202230234 조아연
 
-## 6월 11일 강의 내용 정리(보강주)
+## 6월 12일 강의 내용 정리 (보강주)
+CSS란?
+* Cascading Style Sheets의 약자, 스타일링을 위한 언어
+* Cascading이란 계단식이란 뜻으로 한 엘리먼트에 여러 스타일이 적용될 경우 스타일간의 충돌을 막기 위해 계단식으로 적용시키는 규칙을 갖고 있음
+* 즉 하나의 스타일이 여러 개의 엘리먼트에 적용될 수 있고, 하나의 엘리먼트에도 여러 개의 스타일이 적용될 수 있다
 
+CSS 문법과 선택자
+* 선택자를 먼저 쓰고 다음에 적용할 스타일을 중괄호 안에 세미콜론으로 구분하여 하나씩 작성
+* 선택자는 HTML 엘리먼트를 직접 넣어도 되고, 엘리먼트의 조합 혹은 class의 형태로 작성 가능
+* 스타일은 property(속성)과 key value(키 값)로 이루어 지며, 이들은 콜론(:)으로 구분하고, 각 스타일은 세미콜론(;)으로 구분
+
+레이아웃과 관련된 속성
+* 화면에 엘리먼트를 어떻게 배치할 것인지를 정의
+* 가장 중요한 속성은 display
+* 모든 엘리먼트는 기본 display 속성을 갖고 있지만, 이 기본값을 변경해 줄 수 있다
+```js
+div {
+    display: none | block | inline | flex;
+}
+```
+* none - 존재는 하지만 화면엔 보이지 않음. js를 넣을 때 사용
+* block - 세로 정렬. width의 height를 가질 수 있음. 크기 상관 없이 한 줄 점유
+* inline 가로 정렬. width의 height를 가질 수 없음. 컨텐츠 크기만큼 공간 점유
+* inline-block - 기본적으로 inline 속성을 갖지만 width와 height 등 block의 특성을 사용할 수 있음
+
+Style-components
+* CSS 문법을 그대로 사용하면서 결과물을 스타일링된 컴포넌트 형태로 만들어주는 오픈 라이브러리
+* 컴포넌트의 개념을 사용하고 있어 리액트 개발에 많이 사용됨
+```js
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  padding: 1em;
+  background: gray;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  color: white;
+  text-align: center;
+`;
+
+const Button = styled.button`
+  color: ${props => (props.dark ? "white" : "black")};
+  background: ${props => (props.dark ? "darkgray" : "white")};
+  border: 1px solid black;
+`;
+/*
+const RoundButton = styled(Button)`
+border-radius : 16px;
+`
+*/
+
+/*
+const blockItems = [
+  {
+    label: '1',
+    padding: '1rem',
+    backgroundColor: 'red'
+  },
+  {
+    label: '2',
+    padding: '3rem',
+    backgroundColor: 'green'
+  },
+  {
+    label: '3',
+    padding: '4rem',
+    backgroundColor: 'blue'
+  }
+];
+*/
+export default function MainPage() {
+  return (
+    <Wrapper>
+      <Title>
+        안녕 리엑트!
+        <Button>Nomal</Button>
+        <Button dark>Dark</Button>
+        <!--<RoundButton>Round Button</RoundButton>-->
+        <!-- <br /><br />
+        {blockItems.map((blockItem, index) => (
+          <Block
+            key={index}
+            padding={blockItem.padding}
+            backgroundColor={blockItem.backgroundColor}
+          >
+            {blockItem.label}
+          </Block>
+        ))} -->
+      </Title>
+    </Wrapper>
+  );
+}
+```
+## 6월 11일 강의 내용 정리(보강주)
 Specialization(특수화, 전문화)
 * 웰컴다이얼로그는 다이얼로그의 특별한 케이스
 * 범용적인 개념을 구별이 되게 구체화하는 것을 특수화라고 함
